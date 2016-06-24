@@ -7,7 +7,7 @@ fibonacci = [0, 1]
 
 while fibonacci.length - 1 <= i
   last = fibonacci.length - 1
-  fibonacci << fibonacci[last] + fibonacci[last - 1]
+  fibonacci << (fibonacci[last] + fibonacci[last - 1]) % 10
 end
 
-puts fibonacci[i] % 10
+puts fibonacci[i]
