@@ -10,4 +10,4 @@ while fibonacci.length - 1 <= i
   fibonacci << fibonacci[last] + fibonacci[last - 1]
 end
 
-puts fibonacci.last
+puts fibonacci[i]
