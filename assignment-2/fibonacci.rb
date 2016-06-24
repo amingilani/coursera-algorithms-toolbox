@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-# given an input i, find the ith fibonacci number
+# given an input i, find the last digit of the ith fibonacci number
 i = gets.to_i
 
 fibonacci = [0, 1]

@@ -1,5 +1,7 @@
 #!/usr/bin/ruby
 
+# given two numbers, find their greatest possible divisor
+
 def gcd a, b
     case b
     when 0
