@@ -6,10 +6,10 @@ n = i[0]
 m = i[1]
 
 fib = [0, 1]
-fib_m = [0, 1]
+fib_m = fib.dup
 
 loop do
-  fib << fib.last(2).reduce(0, :+)
+  fib = [fib.last, fib.pop(2).reduce(0, :+)]
   fib_m << fib.last % m
 
   break if fib_m.last(2) == [0, 1]
@@ -19,3 +19,4 @@ end
 cycle_length = fib_m.length - 2
 
 puts fib_m[n % cycle_length]
+puts fib
