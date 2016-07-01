@@ -6,13 +6,31 @@
 # the minimum size such that for any segment [ai,bi] there is a point x in set X
 # such that ai <= x <= bi.
 
-inputs = $stdin.read
-               .split("\n")
-               .map(&:chomp)
-               .map(&:split)
-               .map { |e| e.map(&:to_i) }
-test_input_1 = [[3], [1, 3], [2, 5], [3, 6]]
+# test_input = 24
 
-def summand(input)
-
+def summand(n)
+  i = 1
+  sums = []
+  loop do
+    # puts "checking #{i}"
+    break if n - sum(sums) <= 0
+    # puts "i + sum(sums) <= n:  #{i + sum(sums) <= n}"
+    # puts "n - (i + sum(sums)) >= i: #{n - (i + sum(sums))} >= #{i} :#{n - (i + sum(sums)) >= i}"
+    if i + sum(sums) <= n && (n - i - sum(sums) > i || n - i - sum(sums) == 0)
+      sums << i
+      # puts "found #{i}"
+    end
+    i += 1
+  end
+  puts sums.length
+  puts sums.join(' ')
 end
+
+def sum(a)
+  a.reduce(0, :+)
+end
+
+inputs = gets.chomp.to_i
+# test_input = 24
+
+puts summand(inputs)
