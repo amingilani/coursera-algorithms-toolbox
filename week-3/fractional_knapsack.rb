@@ -16,12 +16,13 @@ def fractional_knapsack(inputs)
   bag_weight = 0
 
   while bag_weight <= bag_capacity
+    break if items.empty?
     break if items[0][1] > (bag_capacity - bag_weight)
     bag << items.shift[0..1]
     bag_weight = weigh bag
   end
 
-  unless bag_capacity - bag_weight == 0
+  unless bag_capacity - bag_weight == 0 || items.empty?
     # puts "full items in bag: #{bag}"
 
     last_item = items.shift
@@ -45,14 +46,15 @@ def weigh(bag)
   bag.reduce(0) { |a, e| a + e[1] }
 end
 
-# comment in tests
-inputs = $stdin.read
-               .split("\n")
-               .map(&:chomp)
-               .map(&:split)
-               .map { |e| e.map(&:to_f) }
+# # comment in tests
+# inputs = $stdin.read
+#                .split("\n")
+#                .map(&:chomp)
+#                .map(&:split)
+#                .map { |e| e.map(&:to_f) }
 
-## comment in live
+# comment in live
 # inputs = [[3.0, 50.0], [60.0, 20.0], [100.0, 50.0], [120.0, 30.0]]
+inputs = [[1, 1000], [500, 30]]
 
 puts fractional_knapsack inputs
