@@ -3,14 +3,14 @@
 def fractional_knapsack(inputs)
   specs = inputs.shift
   bag_capacity = specs.last
-  puts "bag capacity: #{bag_capacity}"
+  # puts "bag capacity: #{bag_capacity}"
 
   # items are sorted by value_per_weight, highest first
   # each item is [value, weight, value_per_weight]
   items = inputs.map { |e| e << (e[0] / e[1]) }
                 .sort_by { |e| e[2] }
                 .reverse
-  puts "items: #{items.to_s}"
+  # puts "items: #{items}"
   # the bag is empty
   bag = []
   bag_weight = 0
@@ -22,18 +22,18 @@ def fractional_knapsack(inputs)
   end
 
   unless bag_capacity - bag_weight == 0
-    puts "full items in bag: #{bag.to_s}"
+    # puts "full items in bag: #{bag}"
 
     last_item = items.shift
 
-    puts "last item: #{last_item}"
+    # puts "last item: #{last_item}"
 
     fraction = (bag_capacity - bag_weight) / last_item[1]
-    puts "fraction: #{fraction}"
+    # puts "fraction: #{fraction}"
 
     bag << items.shift[0..1].map { |e| e * fraction }
 
-    puts "full bag: #{bag.to_s}"
+    # puts "full bag: #{bag}"
   end
 
   bag_value = bag.reduce(0) { |a, e| a + e[0] }
