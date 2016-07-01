@@ -22,21 +22,24 @@ def fractional_knapsack(inputs)
     bag_weight = weigh bag
   end
 
-  unless bag_capacity - bag_weight == 0 || items.empty?
+  unless items.empty? || bag_capacity - bag_weight == 0
     # puts "full items in bag: #{bag}"
 
     last_item = items.shift
 
     # puts "last item: #{last_item}"
 
-    fraction = (bag_capacity - bag_weight) / last_item[1]
+    fraction = ( bag_capacity - bag_weight ) / last_item[1]
+    # puts "bag weight: #{bag_weight}"
+    # puts "bag capacity: #{bag_capacity}"
+    # puts "last item weight: #{last_item[1]}"
     # puts "fraction: #{fraction}"
 
-    bag << items.shift[0..1].map { |e| e * fraction }
+    bag << last_item.map { |e| e * fraction }
 
-    # puts "full bag: #{bag}"
   end
 
+  # puts "full bag: #{bag}"
   bag_value = bag.reduce(0) { |a, e| a + e[0] }
 
   bag_value
@@ -46,15 +49,20 @@ def weigh(bag)
   bag.reduce(0) { |a, e| a + e[1] }
 end
 
-# # comment in tests
-# inputs = $stdin.read
-#                .split("\n")
-#                .map(&:chomp)
-#                .map(&:split)
-#                .map { |e| e.map(&:to_f) }
+# comment in tests
+inputs = $stdin.read
+               .split("\n")
+               .map(&:chomp)
+               .map(&:split)
+               .map { |e| e.map(&:to_f) }
+fractional_knapsack inputs
 
-# comment in live
+# # comment in live
 # inputs = [[3.0, 50.0], [60.0, 20.0], [100.0, 50.0], [120.0, 30.0]]
-inputs = [[1, 1000], [500, 30]]
-
-puts fractional_knapsack inputs
+# puts "case 1: #{fractional_knapsack(inputs) == 180.0}"
+#
+# inputs = [[1.0, 1000.0], [500.0, 30.0]]
+# puts "case 2: #{fractional_knapsack(inputs) == 500}"
+#
+# inputs = [[1.0, 10.0], [500.0, 30.0]]
+# puts "case 3: #{fractional_knapsack(inputs)}"
