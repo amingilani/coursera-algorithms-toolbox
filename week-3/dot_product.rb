@@ -17,7 +17,7 @@ inputs = $stdin.read
                .split("\n")
                .map(&:chomp)
                .map(&:split)
-               .map { |e| e.map(&:to_f) }
+               .map { |e| e.map(&:to_i) }
 
 # test_input_1 = [[3.0], [1.0, 3.0, -5.0], [-2.0, 4.0, 1.0]]
 
