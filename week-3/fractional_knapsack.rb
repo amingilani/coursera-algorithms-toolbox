@@ -55,7 +55,7 @@ inputs = $stdin.read
                .map(&:chomp)
                .map(&:split)
                .map { |e| e.map(&:to_f) }
-fractional_knapsack inputs
+puts fractional_knapsack inputs
 
 # # comment in live
 # inputs = [[3.0, 50.0], [60.0, 20.0], [100.0, 50.0], [120.0, 30.0]]
