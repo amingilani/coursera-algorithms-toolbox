@@ -11,31 +11,19 @@ def points_batao(input)
   lines = input.sort_by { |e| e[0] }.map { |e| (e[0]..e[1]).to_a }
   puts "lines are #{lines}"
   points = []
-  tmp = []
-  lines.each_with_index do |m, i|
-    puts "going over line #{m}"
-    if tmp.empty?
-      tmp += m
-      puts "tmp is empty, adding #{tmp}"
-      next
+  loop do
+    (0...lines.length - 1).each do |i|
+      common_points = (lines[i] & lines[i + 1])
+      points << lines[i] if common_points.empty?
+      puts "points are #{points}"
     end
-    common_points = tmp & m
-    puts "common_points: #{common_points}"
-    if common_points.empty?
-      points << tmp.first
-      tmp = m
-      puts "Adding #{tmp.first} to points: #{points}"
-      puts "Adding #{m} to tmp"
-      next
+    if defined? previous_points
+      break if previous_points == points
+      previous_points = points
+    else
+      previous_points = points
     end
-    if i == length - 1
-      points << tmp.last
-      puts "Adding #{tmp.first} to points: #{points}"
-      next
-    end
-    tmp = common_points
   end
-  points
 end
 
 # inputs = $stdin.read
