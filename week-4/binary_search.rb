@@ -7,8 +7,8 @@ b = input[1][1..-1].map(&:to_i)
 # a = [1, 5, 8, 12, 13]
 # b = [8, 1, 23, 1, 11]
 
-puts a.to_s
-puts b.to_s
+# puts a.to_s
+# puts b.to_s
 
 def search(term, list, left, right)
   middle = (left - right) / 2
@@ -28,4 +28,4 @@ def search(term, list, left, right)
   end
 end
 
-puts b.map{ |i| search i, a, 0, (b.length - 1) }.join(" ")
+puts b.map{ |i| search i, a, 0, (b.length - 1) }.join(' ')
